@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+<h3>Dashboard</h3>
+<hr>
+<p>
+<small>{{request.user.username}}</small> Welcome to your Dashboard
+</p>
+<hr>
+{% if articles  %}
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">İd</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for article in articles %}
+   <tr>
+      <th scope="row">{{article.id}}</th>
+      <td><a href="{% url 'articles:detail' article.id %}">{{article.title}}</a> </td>
+      <td>{{article.author.username}}</td>
+      <td>{{article.created_date}}</td>
+       <td><a href="{% url 'articles:update' article.id %}" class="btn btn-danger">Güncelle</a> </td>
+       <td><a href="{% url 'articles:delete' article.id %}" class="btn btn-danger">Sil</a></td>
+    </tr>
+
+
+  {% endfor %}
+
+
+  </tbody>
+</table>
+{% else %}
+<div class="alert alert-danger">Henüz Makaleniz Bulunmuyor...</div>
+{% endif %}
+<a class="btn btn-danger" href="{% url 'articles:addarticle' %}">Addarticle</a>
+{% endblock body %}

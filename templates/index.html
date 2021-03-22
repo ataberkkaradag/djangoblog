@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="jumbotron text-center">
+    <h3>Welcome to CodePendent</h3>
+    <p>Your loyal code helper</p>
+
+</div>
+
+<p>
+    {% if request.user.is_authenticated %}
+
+    {% else%}
+    {% endif %}
+
+
+
+
+
+</p>
+
+{% endblock body %}
